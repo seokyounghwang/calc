@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>공학용 계산기</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f3f3f3;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .calculator {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 350px;
+    }
+    .screen {
+        background-color: #f5f5f5;
+        color: #333;
+        font-size: 24px;
+        padding: 20px;
+        text-align: right;
+    }
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+    }
+    button {
+        background-color: #e0e0e0;
+        border: none;
+        color: #333;
+        cursor: pointer;
+        font-size: 18px;
+        outline: none;
+        padding: 15px 0;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #ccc;
+    }
+    button.operator {
+        background-color: #ff9800;
+        color: #fff;
+    }
+    button.operator:hover {
+        background-color: #f57c00;
+    }
+    button.clear {
+        grid-column: span 2;
+    }
+    button.equals {
+        grid-column: span 2;
+        background-color: #4caf50;
+        color: #fff;
+    }
+    button.equals:hover {
+        background-color: #388e3c;
+    }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+    <div class="screen" id="screen">0</div>
+    <div class="buttons">
+        <button onclick="appendToScreen('7')">7</button>
+        <button onclick="appendToScreen('8')">8</button>
+        <button onclick="appendToScreen('9')">9</button>
+        <button class="operator" onclick="appendToScreen('/')">÷</button>
+
+        <button onclick="appendToScreen('4')">4</button>
+        <button onclick="appendToScreen('5')">5</button>
+        <button onclick="appendToScreen('6')">6</button>
+        <button class="operator" onclick="appendToScreen('*')">x</button>
+
+        <button onclick="appendToScreen('1')">1</button>
+        <button onclick="appendToScreen('2')">2</button>
+        <button onclick="appendToScreen('3')">3</button>
+        <button class="operator" onclick="appendToScreen('-')">-</button>
+
+        <button class="clear" onclick="clearScreen()">C</button>
+        <button onclick="appendToScreen('0')">0</button>
+        <button onclick="appendToScreen('.')">.</button>
+        <button class="operator" onclick="appendToScreen('+')">+</button>
+
+        <button class="equals" onclick="calculate()">=</button>
+    </div>
+</div>
+
+<script>
+    function appendToScreen(value) {
+        document.getElementById('screen').innerText += value;
+    }
+
+    function clearScreen() {
+        document.getElementById('screen').innerText = '';
+    }
+
+    function calculate() {
+        let result = eval(document.getElementById('screen').innerText);
+        document.getElementById('screen').innerText = result;
+    }
+</script>
+
+</body>
+</html>
